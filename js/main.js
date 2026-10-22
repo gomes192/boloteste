@@ -1,147 +1,136 @@
 (function () {
   'use strict';
-
-  /* ---------- footer year ---------- */
-  var yearEl = document.getElementById('year');
+  const STORAGE_KEY = 'doceMigalhaPedidos';
+  const money = value => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
+  const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  /* ---------- mobile nav ---------- */
-  var navToggle = document.querySelector('.nav-toggle');
-  var nav = document.getElementById('primary-nav');
+  const navToggle = document.querySelector('.nav-toggle');
+  const nav = document.getElementById('primary-nav');
   if (navToggle && nav) {
-    navToggle.addEventListener('click', function () {
-      var open = nav.classList.toggle('open');
+    navToggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
       navToggle.setAttribute('aria-expanded', String(open));
+      navToggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
     });
-    nav.addEventListener('click', function (e) {
-      if (e.target.tagName === 'A') {
+    nav.addEventListener('click', event => {
+      if (event.target.tagName === 'A') {
         nav.classList.remove('open');
         navToggle.setAttribute('aria-expanded', 'false');
       }
     });
   }
 
-  /* ---------- scroll reveal ---------- */
-  var revealEls = document.querySelectorAll('.reveal');
+  const revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && revealEls.length) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    revealEls.forEach(function (el) { io.observe(el); });
-  } else {
-    revealEls.forEach(function (el) { el.classList.add('in'); });
-  }
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('in'); observer.unobserve(entry.target); }
+    }), { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+  } else revealEls.forEach(el => el.classList.add('in'));
 
-  /* ---------- pricing ---------- */
-  var SIZE_PRICE = { '6': 38, '8': 52, '10': 68, 'tiered': 96 };
-  var FLAVOUR_EXTRA = { vanilla: 0, chocolate: 6, 'red-velvet': 8, lemon: 4, custom: 20 };
-
-  /* ---------- reservation form ---------- */
-  var form = document.getElementById('reservation-form');
+  const SIZE_PRICE = { '6': 190, '8': 260, '10': 340, tiered: 480 };
+  const FLAVOUR_EXTRA = { vanilla: 0, chocolate: 30, 'red-velvet': 40, lemon: 20, custom: 100 };
+  const CAKE_LABELS = { vanilla: 'Baunilha clássica', chocolate: 'Trufa de chocolate', 'red-velvet': 'Red velvet', lemon: 'Limão com mirtilo', custom: 'Personalizado' };
+  const form = document.getElementById('reservation-form');
   if (!form) return;
+  const confirmation = document.getElementById('confirmation');
+  const summary = document.getElementById('summary');
+  const confirmEmail = document.getElementById('confirmation-email');
+  const estimateEl = document.getElementById('estimate-amount');
+  const cakeSel = document.getElementById('cake');
+  const sizeSel = document.getElementById('size');
+  const dateInput = document.getElementById('date');
+  const timeSel = document.getElementById('time');
+  const newBtn = document.getElementById('new-reservation');
+  const localISODate = date => {
+    const tz = date.getTimezoneOffset() * 60000;
+    return new Date(date.getTime() - tz).toISOString().slice(0, 10);
+  };
+  const minDate = new Date(Date.now() + 48 * 60 * 60 * 1000);
+  dateInput.min = localISODate(minDate);
 
-  var confirmation = document.getElementById('confirmation');
-  var summary = document.getElementById('summary');
-  var confirmEmail = document.getElementById('confirmation-email');
-  var estimateEl = document.getElementById('estimate-amount');
-  var cakeSel = document.getElementById('cake');
-  var sizeSel = document.getElementById('size');
-  var dateInput = document.getElementById('date');
-  var newBtn = document.getElementById('new-reservation');
-
-  /* enforce 48h minimum on the date picker */
-  function isoLocalDate(d) {
-    var tz = d.getTimezoneOffset() * 60000;
-    return new Date(d.getTime() - tz).toISOString().slice(0, 10);
+  function totalPrice() {
+    if (!SIZE_PRICE[sizeSel.value] || !cakeSel.value) return null;
+    return SIZE_PRICE[sizeSel.value] + (FLAVOUR_EXTRA[cakeSel.value] || 0);
   }
-  var minDate = new Date(Date.now() + 48 * 3600 * 1000);
-  dateInput.min = isoLocalDate(minDate);
-
-  /* live estimate */
   function updateEstimate() {
-    var base = SIZE_PRICE[sizeSel.value];
-    var extra = FLAVOUR_EXTRA[cakeSel.value];
-    if (base == null) { estimateEl.textContent = '—'; return; }
-    estimateEl.textContent = '$' + (base + (extra || 0));
+    const total = totalPrice();
+    estimateEl.textContent = total === null ? '—' : money(total);
   }
   cakeSel.addEventListener('change', updateEstimate);
   sizeSel.addEventListener('change', updateEstimate);
 
-  /* validation helpers */
   function fieldOf(input) { return input.closest('.field'); }
-  function setError(input, on) { fieldOf(input).classList.toggle('invalid', !!on); }
-  function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
-
+  function setError(input, on) { fieldOf(input).classList.toggle('invalid', Boolean(on)); }
+  function validEmail(value) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value); }
   function validate() {
-    var ok = true;
-    var name = document.getElementById('name');
-    var email = document.getElementById('email');
-
-    if (!name.value.trim()) { setError(name, true); ok = false; } else setError(name, false);
-    if (!validEmail(email.value.trim())) { setError(email, true); ok = false; } else setError(email, false);
-    if (!cakeSel.value) { setError(cakeSel, true); ok = false; } else setError(cakeSel, false);
-    if (!sizeSel.value) { setError(sizeSel, true); ok = false; } else setError(sizeSel, false);
-
-    var d = new Date(dateInput.value + 'T00:00:00');
-    var min = new Date(isoLocalDate(minDate) + 'T00:00:00');
-    if (!dateInput.value || isNaN(d) || d < min) { setError(dateInput, true); ok = false; }
-    else setError(dateInput, false);
-
+    let ok = true;
+    const name = document.getElementById('name');
+    const email = document.getElementById('email');
+    [[name, !name.value.trim()], [email, !validEmail(email.value.trim())],
+      [cakeSel, !cakeSel.value], [sizeSel, !sizeSel.value]].forEach(([input, invalid]) => {
+        setError(input, invalid); if (invalid) ok = false;
+      });
+    const chosenDate = new Date(dateInput.value + 'T00:00:00');
+    const minDay = new Date(localISODate(minDate) + 'T00:00:00');
+    const invalidDate = !dateInput.value || Number.isNaN(chosenDate.getTime()) || chosenDate < minDay;
+    setError(dateInput, invalidDate);
+    if (invalidDate) ok = false;
     return ok;
   }
-
   [document.getElementById('name'), document.getElementById('email'), cakeSel, sizeSel, dateInput]
-    .forEach(function (el) {
-      el.addEventListener('input', function () { setError(el, false); });
-      el.addEventListener('change', function () { setError(el, false); });
+    .forEach(el => {
+      el.addEventListener('input', () => setError(el, false));
+      el.addEventListener('change', () => setError(el, false));
     });
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
+  form.addEventListener('submit', event => {
+    event.preventDefault();
     if (!validate()) {
-      var firstInvalid = form.querySelector('.field.invalid input, .field.invalid select');
+      const firstInvalid = form.querySelector('.field.invalid input, .field.invalid select');
       if (firstInvalid) firstInvalid.focus();
       return;
     }
-
-    var base = SIZE_PRICE[sizeSel.value] || 0;
-    var extra = FLAVOUR_EXTRA[cakeSel.value] || 0;
-    var total = base + extra;
-    var code = 'SC-' + Math.random().toString(36).slice(2, 6).toUpperCase()
-             + '-' + Date.now().toString().slice(-3);
-
-    var cakeLabel = cakeSel.options[cakeSel.selectedIndex].text;
-    var sizeLabel = sizeSel.options[sizeSel.selectedIndex].text;
-    var dateLabel = new Date(dateInput.value + 'T00:00:00').toLocaleDateString(undefined, {
-      weekday: 'short', month: 'short', day: 'numeric'
+    const total = totalPrice();
+    const data = {
+      id: 'DM-' + Date.now().toString().slice(-7),
+      nome: document.getElementById('name').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      telefone: document.getElementById('phone').value.trim(),
+      bolo: CAKE_LABELS[cakeSel.value],
+      tamanho: sizeSel.options[sizeSel.selectedIndex].text,
+      data: dateInput.value,
+      horario: timeSel.value,
+      observacoes: document.getElementById('notes').value.trim(),
+      total,
+      status: 'Novo',
+      criadoEm: new Date().toISOString()
+    };
+    let orders = [];
+    try { orders = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch (_) {}
+    orders.unshift(data);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(orders));
+    summary.replaceChildren();
+    const dl = document.createElement('dl');
+    const rows = [
+      ['Código do pedido', data.id], ['Bolo', data.bolo], ['Tamanho', data.tamanho],
+      ['Retirada', new Date(data.data + 'T12:00:00').toLocaleDateString('pt-BR') + ' às ' + data.horario],
+      ['Valor estimado', money(data.total)]
+    ];
+    rows.forEach(([label, value]) => {
+      const dt = document.createElement('dt'); dt.textContent = label;
+      const dd = document.createElement('dd'); dd.textContent = value;
+      dl.append(dt, dd);
     });
-    var timeLabel = document.getElementById('time').value;
-
-    summary.innerHTML =
-      '<dl>' +
-        '<dt>Booking code</dt><dd>' + code + '</dd>' +
-        '<dt>Cake</dt><dd>' + cakeLabel + '</dd>' +
-        '<dt>Size</dt><dd>' + sizeLabel + '</dd>' +
-        '<dt>Pick-up</dt><dd>' + dateLabel + ' · ' + timeLabel + '</dd>' +
-        '<dt>Estimated total</dt><dd>$' + total + '</dd>' +
-      '</dl>';
-
-    confirmEmail.textContent = document.getElementById('email').value.trim();
+    summary.append(dl);
+    confirmEmail.textContent = data.email;
     form.style.display = 'none';
     confirmation.classList.add('show');
     confirmation.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
-
-  newBtn.addEventListener('click', function () {
-    form.reset();
-    updateEstimate();
-    form.style.display = '';
-    confirmation.classList.remove('show');
-    document.getElementById('name').focus();
+  newBtn.addEventListener('click', () => {
+    form.reset(); updateEstimate(); form.style.display = '';
+    confirmation.classList.remove('show'); document.getElementById('name').focus();
   });
 })();

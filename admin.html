@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Painel administrativo — Doce Migalha</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <header class="admin-header">
+    <a class="admin-brand" href="/">🎂 Doce Migalha <span>Painel administrativo</span></a>
+    <nav><a href="/">Ver site</a><button class="btn btn-outline" id="export-btn">Exportar pedidos (.json)</button></nav>
+  </header>
+  <main class="admin-container">
+    <div class="page-title">
+      <div><p class="eyebrow">Área administrativa · demonstração</p><h1>Painel de controle</h1><p class="muted">Gerencie pedidos de exemplo armazenados apenas neste navegador.</p></div>
+      <div class="demo-warning">Modo demonstração — sem backend ou autenticação</div>
+    </div>
+
+    <section class="stats-grid" aria-label="Resumo dos pedidos">
+      <article class="stat"><span>Total de pedidos</span><strong id="stat-total">0</strong><small>Todos os registros locais</small></article>
+      <article class="stat"><span>Novos</span><strong id="stat-new">0</strong><small>Aguardando análise</small></article>
+      <article class="stat"><span>Confirmados</span><strong id="stat-confirmed">0</strong><small>Pedidos de exemplo</small></article>
+      <article class="stat"><span>Valor estimado</span><strong id="stat-value">R$ 0,00</strong><small>Soma dos pedidos locais</small></article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading"><div><h2>Pedidos recebidos</h2><p>Use os filtros, altere o status ou abra os detalhes.</p></div><div class="toolbar"><input id="search" type="search" placeholder="Buscar nome, e-mail ou código" aria-label="Buscar pedidos"><select id="status-filter" aria-label="Filtrar por status"><option value="">Todos os status</option><option>Novo</option><option>Em análise</option><option>Confirmado</option><option>Concluído</option><option>Cancelado</option></select></div></div>
+      <div class="table-wrap"><table><thead><tr><th>Código / cliente</th><th>Bolo</th><th>Retirada</th><th>Valor</th><th>Status</th><th>Ações</th></tr></thead><tbody id="orders-body"></tbody></table></div>
+      <div id="empty-state" class="empty-state" hidden><span>📭</span><h3>Nenhum pedido encontrado</h3><p>Crie um pedido no site ou carregue os exemplos demonstrativos.</p></div>
+      <div class="panel-footer"><span id="result-count">0 pedidos</span><div class="footer-actions"><button class="btn btn-outline" id="seed-btn">Carregar exemplos</button><button class="btn btn-danger-outline" id="clear-btn">Apagar dados locais</button></div></div>
+    </section>
+
+    <section class="panel products-panel">
+      <div class="panel-heading"><div><h2>Cardápio (exemplos)</h2><p>Edite nomes e preços de demonstração. As alterações ficam neste navegador.</p></div></div>
+      <div class="product-grid" id="products-grid"></div>
+      <form id="product-form" class="product-form">
+        <h3>Adicionar item ao cardápio</h3>
+        <div class="product-form-grid"><label>Nome do bolo<input id="product-name" required placeholder="Ex.: Coco com abacaxi"></label><label>Preço inicial (R$)<input id="product-price" required type="number" min="1" step="0.01" placeholder="199,90"></label><label>Descrição<input id="product-description" placeholder="Descrição curta"></label><button class="btn" type="submit">Adicionar item</button></div>
+      </form>
+    </section>
+    <p class="footnote">Aviso: esta tela não tem login, permissões, banco de dados ou sincronização. O localStorage pode ser apagado pelo navegador e não deve ser usado para dados reais de clientes.</p>
+  </main>
+
+  <dialog id="details-dialog" class="details-dialog">
+    <div class="dialog-head"><h2>Detalhes do pedido</h2><button id="close-dialog" class="icon-button" aria-label="Fechar">✕</button></div>
+    <div id="details-content"></div>
+    <div class="dialog-actions"><button id="dialog-close-bottom" class="btn btn-outline">Fechar</button></div>
+  </dialog>
+  <script src="js/admin.js"></script>
+</body>
+</html>

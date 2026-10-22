@@ -1,309 +1,138 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sweet Crumb — Custom Cake Reservations</title>
-  <meta name="description" content="Reserve a handcrafted cake for any occasion. Baked fresh, delivered to your door." />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎂</text></svg>" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doce Migalha — Bolos artesanais sob encomenda</title>
+  <meta name="description" content="Reserve um bolo artesanal para sua comemoração. Feito fresquinho e com carinho.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎂</text></svg>">
 </head>
 <body>
-
   <header class="site-header" id="top">
     <div class="container header-inner">
-      <a class="logo" href="#top"><span class="logo-mark">🎂</span> Sweet&nbsp;Crumb</a>
-
-      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
-        <span aria-hidden="true">☰</span><span class="sr-only">Toggle menu</span>
-      </button>
-
-      <nav class="nav" id="primary-nav">
-        <a href="#menu">Cakes</a>
-        <a href="#how">How it works</a>
-        <a href="#reserve" class="btn btn-sm">Reserve now</a>
+      <a class="logo" href="#top"><span class="logo-mark" aria-hidden="true">🎂</span> Doce Migalha</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Abrir menu">☰</button>
+      <nav class="nav" id="primary-nav" aria-label="Navegação principal">
+        <a href="#cardapio">Cardápio</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#reserva" class="btn btn-sm">Fazer encomenda</a>
       </nav>
     </div>
   </header>
 
   <main>
-
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">Handcrafted · Small batch</p>
-          <h1>Cakes worth<br /><em>celebrating</em> for.</h1>
-          <p class="lead">
-            Reserve a custom cake for birthdays, weddings, or a Tuesday that needs saving.
-            Every cake is baked fresh the morning of your pick-up.
-          </p>
+          <p class="eyebrow">Feito à mão · Pequenas fornadas</p>
+          <h1>Bolos feitos para<br><em>celebrar a vida.</em></h1>
+          <p class="lead">Encomende um bolo especial para aniversários, casamentos ou para deixar qualquer dia mais gostoso. Cada bolo é preparado fresquinho para a data combinada.</p>
           <div class="hero-actions">
-            <a href="#reserve" class="btn">Reserve your cake</a>
-            <a href="#menu" class="btn btn-ghost">See the menu</a>
+            <a href="#reserva" class="btn">Encomendar meu bolo</a>
+            <a href="#cardapio" class="btn btn-ghost">Ver cardápio</a>
           </div>
           <ul class="hero-badges">
-            <li>✓ 48h notice</li>
-            <li>✓ Free delivery over $75</li>
-            <li>✓ Gluten-free options</li>
+            <li>✓ Encomenda com 48h de antecedência</li>
+            <li>✓ Entrega grátis acima de R$ 350</li>
+            <li>✓ Opções sem glúten sob consulta</li>
           </ul>
         </div>
-
         <div class="hero-art">
-          <svg class="cake-art" viewBox="0 0 320 320" role="img"
-               aria-label="Illustration of a three-tier frosted cake topped with a cherry">
+          <svg class="cake-art" viewBox="0 0 320 320" role="img" aria-label="Ilustração de um bolo de três andares decorado com uma cereja">
             <ellipse cx="160" cy="292" rx="120" ry="14" fill="#f0dcd4"/>
-
             <rect x="48" y="212" width="224" height="72" rx="16" fill="#f0b8c2"/>
             <rect x="48" y="212" width="224" height="24" rx="12" fill="#fffaf6"/>
-            <g fill="#fffaf6">
-              <circle cx="66" cy="236" r="9"/><circle cx="96" cy="236" r="12"/>
-              <circle cx="128" cy="236" r="9"/><circle cx="160" cy="236" r="13"/>
-              <circle cx="192" cy="236" r="9"/><circle cx="224" cy="236" r="12"/>
-              <circle cx="254" cy="236" r="9"/>
-            </g>
-
+            <g fill="#fffaf6"><circle cx="66" cy="236" r="9"/><circle cx="96" cy="236" r="12"/><circle cx="128" cy="236" r="9"/><circle cx="160" cy="236" r="13"/><circle cx="192" cy="236" r="9"/><circle cx="224" cy="236" r="12"/><circle cx="254" cy="236" r="9"/></g>
             <rect x="78" y="146" width="164" height="66" rx="14" fill="#e79aa6"/>
             <rect x="78" y="146" width="164" height="22" rx="11" fill="#fffaf6"/>
-            <g fill="#fffaf6">
-              <circle cx="94" cy="168" r="8"/><circle cx="120" cy="168" r="11"/>
-              <circle cx="148" cy="168" r="8"/><circle cx="176" cy="168" r="11"/>
-              <circle cx="204" cy="168" r="8"/><circle cx="226" cy="168" r="10"/>
-            </g>
-
+            <g fill="#fffaf6"><circle cx="94" cy="168" r="8"/><circle cx="120" cy="168" r="11"/><circle cx="148" cy="168" r="8"/><circle cx="176" cy="168" r="11"/><circle cx="204" cy="168" r="8"/><circle cx="226" cy="168" r="10"/></g>
             <rect x="108" y="86" width="104" height="60" rx="12" fill="#d9748a"/>
             <rect x="108" y="86" width="104" height="20" rx="10" fill="#fffaf6"/>
-            <g fill="#fffaf6">
-              <circle cx="124" cy="106" r="8"/><circle cx="148" cy="106" r="10"/>
-              <circle cx="172" cy="106" r="8"/><circle cx="196" cy="106" r="9"/>
-            </g>
-
-            <path d="M160 62c0-10 8-16 16-20" fill="none" stroke="#5a7a4a"
-                  stroke-width="4" stroke-linecap="round"/>
-            <circle cx="160" cy="76" r="12" fill="#d8455f"/>
-            <circle cx="156" cy="72" r="3.5" fill="#ef8a9c" opacity=".8"/>
+            <g fill="#fffaf6"><circle cx="124" cy="106" r="8"/><circle cx="148" cy="106" r="10"/><circle cx="172" cy="106" r="8"/><circle cx="196" cy="106" r="9"/></g>
+            <path d="M160 62c0-10 8-16 16-20" fill="none" stroke="#5a7a4a" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="160" cy="76" r="12" fill="#d8455f"/><circle cx="156" cy="72" r="3.5" fill="#ef8a9c" opacity=".8"/>
           </svg>
         </div>
       </div>
     </section>
 
-    <section class="section" id="how">
+    <section class="section" id="como-funciona">
       <div class="container">
         <div class="section-head reveal">
-          <h2>Three steps to cake</h2>
-          <p>No phone tag, no back-and-forth. Fill in the form and we take it from there.</p>
+          <h2>Encomendar é simples</h2>
+          <p>Preencha o formulário e enviaremos os próximos passos. Esta demonstração não envia dados para um servidor.</p>
         </div>
-
         <div class="feature-grid">
-          <article class="feature reveal">
-            <span class="num">1</span>
-            <h3>Pick your cake</h3>
-            <p>Choose a flavour and size from the menu, or tell us what you're dreaming up.</p>
-          </article>
-          <article class="feature reveal">
-            <span class="num">2</span>
-            <h3>Pick a time</h3>
-            <p>We need 48 hours' notice. Choose a pick-up slot or have it delivered.</p>
-          </article>
-          <article class="feature reveal">
-            <span class="num">3</span>
-            <h3>We bake it fresh</h3>
-            <p>Your cake is baked the morning of collection. You'll get a text when it's boxed.</p>
-          </article>
+          <article class="feature reveal"><span class="num">1</span><h3>Escolha seu bolo</h3><p>Selecione o sabor e o tamanho ou conte como imagina seu bolo personalizado.</p></article>
+          <article class="feature reveal"><span class="num">2</span><h3>Escolha a data</h3><p>Pedimos pelo menos 48 horas de antecedência para preparar tudo com cuidado.</p></article>
+          <article class="feature reveal"><span class="num">3</span><h3>Pronto para comemorar</h3><p>Retire no horário combinado. Nesta versão demonstrativa, a confirmação é simulada.</p></article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="menu">
+    <section class="section" id="cardapio">
       <div class="container">
-        <div class="section-head reveal">
-          <h2>The cake menu</h2>
-          <p>Prices start at $38 for a 6" round. Every cake serves roughly 8–24 people.</p>
-        </div>
-
-        <div class="menu-grid">
-          <article class="cake-card reveal">
-            <div class="cake-art-top" style="--tint:#fdf0e6">🍰</div>
-            <div class="body">
-              <h3>Classic Vanilla</h3>
-              <p>Madagascar vanilla sponge, vanilla bean buttercream, fresh raspberry jam.</p>
-              <span class="price">from $38</span>
-            </div>
-          </article>
-
-          <article class="cake-card reveal">
-            <div class="cake-art-top" style="--tint:#f3e9e4">🍫</div>
-            <div class="body">
-              <h3>Chocolate Truffle</h3>
-              <p>Dark cocoa sponge layered with silky ganache and a pinch of sea salt.</p>
-              <span class="price">from $44</span>
-            </div>
-          </article>
-
-          <article class="cake-card reveal">
-            <div class="cake-art-top" style="--tint:#fdeaea">🍒</div>
-            <div class="body">
-              <h3>Red Velvet</h3>
-              <p>Buttermilk red velvet with tangy cream cheese frosting and velvet crumb.</p>
-              <span class="price">from $46</span>
-            </div>
-          </article>
-
-          <article class="cake-card reveal">
-            <div class="cake-art-top" style="--tint:#fbf6e0">🍋</div>
-            <div class="body">
-              <h3>Lemon Blueberry</h3>
-              <p>Zesty lemon sponge, blueberry compote swirl, light mascarpone cream.</p>
-              <span class="price">from $42</span>
-            </div>
-          </article>
-
-          <article class="cake-card reveal">
-            <div class="cake-art-top" style="--tint:#f0eefb">🎨</div>
-            <div class="body">
-              <h3>Custom Design</h3>
-              <p>Tell us the occasion and we'll sketch a cake just for you. Two weeks' notice.</p>
-              <span class="price">from $58</span>
-            </div>
-          </article>
+        <div class="section-head reveal"><h2>Nosso cardápio</h2><p>Valores demonstrativos para bolos redondos. O preço final depende do tamanho e da decoração.</p></div>
+        <div class="menu-grid" id="menu-grid">
+          <article class="cake-card reveal"><div class="cake-art-top" style="--tint:#fdf0e6">🍰</div><div class="body"><h3>Baunilha clássica</h3><p>Massa de baunilha, creme de manteiga e geleia de framboesa.</p><span class="price">a partir de R$ 190,00</span></div></article>
+          <article class="cake-card reveal"><div class="cake-art-top" style="--tint:#f3e9e4">🍫</div><div class="body"><h3>Trufa de chocolate</h3><p>Massa de cacau, ganache cremosa e um toque de flor de sal.</p><span class="price">a partir de R$ 220,00</span></div></article>
+          <article class="cake-card reveal"><div class="cake-art-top" style="--tint:#fdeaea">🍒</div><div class="body"><h3>Red velvet</h3><p>Massa aveludada com cobertura de cream cheese.</p><span class="price">a partir de R$ 230,00</span></div></article>
+          <article class="cake-card reveal"><div class="cake-art-top" style="--tint:#fbf6e0">🍋</div><div class="body"><h3>Limão com mirtilo</h3><p>Massa cítrica, compota de mirtilo e creme leve.</p><span class="price">a partir de R$ 210,00</span></div></article>
+          <article class="cake-card reveal"><div class="cake-art-top" style="--tint:#f0eefb">🎨</div><div class="body"><h3>Personalizado</h3><p>Um projeto especial para combinar com sua comemoração.</p><span class="price">a partir de R$ 290,00</span></div></article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="reserve">
+    <section class="section" id="reserva">
       <div class="container">
-        <div class="section-head reveal">
-          <h2>Reserve your cake</h2>
-          <p>Fill in the details below. We'll confirm by email within a few hours.</p>
-        </div>
-
+        <div class="section-head reveal"><h2>Faça sua encomenda</h2><p>Informe os detalhes do pedido. Ao enviar, ele será salvo apenas neste navegador para demonstração.</p></div>
         <div class="reserve-grid">
-
           <div class="card reveal">
             <form id="reservation-form" novalidate>
-
-              <div class="field">
-                <label for="name">Your name</label>
-                <input type="text" id="name" name="name" autocomplete="name" placeholder="Ada Lovelace" />
-                <p class="error" id="name-error">Please tell us your name.</p>
-              </div>
-
+              <div class="field"><label for="name">Nome completo</label><input type="text" id="name" name="name" autocomplete="name" placeholder="Ex.: Ana Silva" required><p class="error" id="name-error">Informe seu nome.</p></div>
               <div class="field-row">
-                <div class="field">
-                  <label for="email">Email</label>
-                  <input type="email" id="email" name="email" autocomplete="email" placeholder="ada@example.com" />
-                  <p class="error" id="email-error">Enter a valid email address.</p>
-                </div>
-                <div class="field">
-                  <label for="phone">Phone <span class="optional">(optional)</span></label>
-                  <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+1 555 0100" />
-                </div>
+                <div class="field"><label for="email">E-mail</label><input type="email" id="email" name="email" autocomplete="email" placeholder="ana@exemplo.com" required><p class="error" id="email-error">Informe um e-mail válido.</p></div>
+                <div class="field"><label for="phone">Telefone <span class="optional">(opcional)</span></label><input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(31) 99999-9999"></div>
               </div>
-
               <div class="field-row">
-                <div class="field">
-                  <label for="cake">Cake</label>
-                  <select id="cake" name="cake">
-                    <option value="">Choose a cake…</option>
-                    <option value="vanilla">Classic Vanilla</option>
-                    <option value="chocolate">Chocolate Truffle</option>
-                    <option value="red-velvet">Red Velvet</option>
-                    <option value="lemon">Lemon Blueberry</option>
-                    <option value="custom">Custom Design</option>
-                  </select>
-                  <p class="error" id="cake-error">Pick a cake from the menu.</p>
-                </div>
-                <div class="field">
-                  <label for="size">Size</label>
-                  <select id="size" name="size">
-                    <option value="">Choose a size…</option>
-                    <option value="6">6" round — serves 8</option>
-                    <option value="8">8" round — serves 14</option>
-                    <option value="10">10" round — serves 24</option>
-                    <option value="tiered">Two-tier — serves 30+</option>
-                  </select>
-                  <p class="error" id="size-error">Choose a size.</p>
-                </div>
+                <div class="field"><label for="cake">Sabor / modelo</label><select id="cake" name="cake" required><option value="">Escolha uma opção…</option><option value="vanilla">Baunilha clássica</option><option value="chocolate">Trufa de chocolate</option><option value="red-velvet">Red velvet</option><option value="lemon">Limão com mirtilo</option><option value="custom">Personalizado</option></select><p class="error" id="cake-error">Escolha um bolo.</p></div>
+                <div class="field"><label for="size">Tamanho</label><select id="size" name="size" required><option value="">Escolha o tamanho…</option><option value="6">15 cm — serve 8 pessoas</option><option value="8">20 cm — serve 14 pessoas</option><option value="10">25 cm — serve 24 pessoas</option><option value="tiered">Dois andares — 30+ pessoas</option></select><p class="error" id="size-error">Escolha o tamanho.</p></div>
               </div>
-
               <div class="field-row">
-                <div class="field">
-                  <label for="date">Pick-up date</label>
-                  <input type="date" id="date" name="date" />
-                  <p class="error" id="date-error">Choose a date at least 48 hours out.</p>
-                </div>
-                <div class="field">
-                  <label for="time">Pick-up time</label>
-                  <select id="time" name="time">
-                    <option>10:00 AM</option>
-                    <option>12:00 PM</option>
-                    <option>2:00 PM</option>
-                    <option>4:00 PM</option>
-                    <option>6:00 PM</option>
-                  </select>
-                </div>
+                <div class="field"><label for="date">Data desejada</label><input type="date" id="date" name="date" required><p class="error" id="date-error">Escolha uma data com pelo menos 48 horas de antecedência.</p></div>
+                <div class="field"><label for="time">Horário para retirada</label><select id="time" name="time"><option>10:00</option><option>12:00</option><option>14:00</option><option>16:00</option><option>18:00</option></select></div>
               </div>
-
-              <div class="field">
-                <label for="notes">Anything else? <span class="optional">(optional)</span></label>
-                <textarea id="notes" name="notes" placeholder="Allergies, message on the cake, colour theme…"></textarea>
-              </div>
-
-              <div class="estimate">
-                <span>Estimated total</span>
-                <strong id="estimate-amount">—</strong>
-              </div>
-
-              <button type="submit" class="btn btn-block">Request reservation</button>
+              <div class="field"><label for="notes">Observações <span class="optional">(opcional)</span></label><textarea id="notes" name="notes" placeholder="Alergias, mensagem no bolo, cores, tema…"></textarea></div>
+              <div class="estimate"><span>Valor estimado</span><strong id="estimate-amount">—</strong></div>
+              <button type="submit" class="btn btn-block">Registrar pedido de demonstração</button>
+              <p class="demo-note">Demonstração: não há envio de e-mail, pagamento nem processamento real do pedido.</p>
             </form>
-
-            <div class="confirmation" id="confirmation">
-              <div class="tick" aria-hidden="true">✓</div>
-              <h3>Reservation requested!</h3>
-              <p>We've sent a confirmation to <strong id="confirmation-email"></strong>.</p>
+            <div class="confirmation" id="confirmation" aria-live="polite">
+              <div class="tick" aria-hidden="true">✓</div><h3>Pedido registrado neste navegador!</h3>
+              <p>Este é apenas um comprovante demonstrativo para <strong id="confirmation-email"></strong>.</p>
               <div class="summary" id="summary"></div>
-              <button type="button" class="btn btn-ghost" id="new-reservation">Make another reservation</button>
+              <button type="button" class="btn btn-ghost" id="new-reservation">Fazer outro pedido</button>
             </div>
           </div>
-
           <aside class="card reveal">
-            <h3>Good to know</h3>
+            <h3>Informações importantes</h3>
             <ul class="info-list">
-              <li>
-                <span class="ico" aria-hidden="true">⏰</span>
-                <div><strong>48 hours' notice</strong><span>Custom designs need two weeks.</span></div>
-              </li>
-              <li>
-                <span class="ico" aria-hidden="true">🚚</span>
-                <div><strong>Delivery</strong><span>Free within 5 km on orders over $75.</span></div>
-              </li>
-              <li>
-                <span class="ico" aria-hidden="true">🌾</span>
-                <div><strong>Dietary needs</strong><span>Gluten-free and vegan on request.</span></div>
-              </li>
-              <li>
-                <span class="ico" aria-hidden="true">📞</span>
-                <div><strong>Questions?</strong><span>hello@sweetcrumb.example · +1 555 0100</span></div>
-              </li>
+              <li><span class="ico" aria-hidden="true">⏰</span><div><strong>Antecedência</strong><span>Encomende com pelo menos 48 horas. Bolos personalizados podem exigir mais tempo.</span></div></li>
+              <li><span class="ico" aria-hidden="true">🚚</span><div><strong>Entrega</strong><span>Entrega grátis em até 5 km para pedidos acima de R$ 350 (exemplo).</span></div></li>
+              <li><span class="ico" aria-hidden="true">🌾</span><div><strong>Restrições alimentares</strong><span>Consulte opções sem glúten e veganas.</span></div></li>
+              <li><span class="ico" aria-hidden="true">📞</span><div><strong>Fale com a gente</strong><span>contato@docemigalha.exemplo · (31) 3333-0100</span></div></li>
             </ul>
+            <p class="admin-shortcut"><a href="/admin">Acessar painel administrativo demonstrativo →</a></p>
           </aside>
-
         </div>
       </div>
     </section>
-
   </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© <span id="year"></span> Sweet Crumb Bakery — demo landing page.</p>
-      <p>Made with butter, flour, and a little CSS.</p>
-    </div>
-  </footer>
-
+  <footer class="site-footer"><div class="container footer-inner"><p>© <span id="year"></span> Doce Migalha — projeto demonstrativo.</p><p>Feito com carinho, farinha e um pouco de CSS.</p></div></footer>
   <script src="js/main.js"></script>
 </body>
 </html>
